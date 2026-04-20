@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article - Liquid Blog</title>
+  <link rel="stylesheet" href="../src/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .article-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .article-header {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .article-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .article-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .article-content {
+      line-height: 1.8;
+      font-size: 15px;
+    }
+    .article-content h1,
+    .article-content h2,
+    .article-content h3 {
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    .article-content p {
+      margin-bottom: 16px;
+    }
+    .article-content code {
+      background: var(--bg-tertiary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    .article-content pre {
+      background: var(--bg-tertiary);
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    .article-content pre code {
+      background: none;
+      padding: 0;
+    }
+    .article-content blockquote {
+      border-left: 3px solid var(--text-muted);
+      padding-left: 16px;
+      margin: 16px 0;
+      color: var(--text-secondary);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+    .back-link:hover {
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="article-container">
+    <a href="../../index.html" class="back-link">
+      <i class="fas fa-arrow-left"></i> 返回首页
+    </a>
+    <article id="article"></article>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug') || 'hello-world';
+
+    const articles = {
+      'hello-world': `# 第一篇博客
+
+欢迎来到我的个人博客！
+
+## 简介
+
+这是一个使用 **Vite** + **GitHub Pages** 搭建的极简博客。
+
+### 主要特性
+
+- 简洁的灰/白/黑主题
+- 响应式设计
+- 快速加载
+- 易于维护
+
+## 代码示例
+
+\`\`\`javascript
+const hello = "world";
+console.log(hello);
+\`\`\`
+
+> 持续更新中...`,
+
+      'css-glassmorphism': `# CSS Glassmorphism 完全指南
+
+Glassmorphism（毛玻璃效果）是一种流行的 UI 设计风格。
+
+## 核心属性
+
+\`\`\`css
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+\`\`\`
+
+### 关键点
+
+1. **backdrop-filter**: 创建模糊效果
+2. **rgba 背景**: 半透明背景
+3. **边框**: 添加层次感
+
+试试看，你会喜欢的！`
+    };
+
+    const articleData = {
+      'hello-world': { title: '第一篇博客', date: '2024-01-15', category: '技术', tags: ['前端', 'Vite'] },
+      'css-glassmorphism': { title: 'CSS Glassmorphism 完全指南', date: '2024-01-10', category: '设计', tags: ['CSS', 'UI设计'] }
+    };
+
+    const data = articleData[slug];
+    const content = articles[slug] || '# 文章不存在';
+
+    document.getElementById('article').innerHTML = `
+      <div class="article-header">
+        <h1 class="article-title">${data.title}</h1>
+        <div class="article-meta">
+          <span><i class="far fa-calendar"></i> ${data.date}</span>
+          <span><i class="far fa-folder"></i> ${data.category}</span>
+          ${data.tags.map(t => `<span class="post-tag">${t}</span>`).join('')}
+        </div>
+      </div>
+      <div class="article-content">
+        ${marked.parse(content)}
+      </div>
+    `;
+    document.title = data.title + ' - Liquid Blog';
+  </script>
+</body>
+</html>
