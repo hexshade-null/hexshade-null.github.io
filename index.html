@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liquid Blog</title>
+  <link rel="stylesheet" href="/src/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 左侧边栏 -->
+    <aside class="sidebar-left">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-droplet"></i>
+        </div>
+        <span class="logo-text">Liquid</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-folder"></i>
+          <span>Categories</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-tags"></i>
+          <span>Tags</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-archive"></i>
+          <span>Archives</span>
+        </a>
+        <a href="#" class="nav-item">
+          <i class="fas fa-user"></i>
+          <span>About</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="theme-toggle" id="themeToggle">
+          <i class="fas fa-sun"></i>
+          <i class="fas fa-moon"></i>
+        </div>
+
+        <div class="social-links">
+          <a href="#" class="social-icon" data-platform="x" title="X (Twitter)">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <a href="#" class="social-icon" data-platform="luogu" title="Luogu">
+            <i class="fas fa-code"></i>
+          </a>
+          <a href="#" class="social-icon" data-platform="atcoder" title="AtCoder">
+            <i class="fas fa-trophy"></i>
+          </a>
+          <a href="#" class="social-icon" data-platform="codeforces" title="Codeforces">
+            <i class="fas fa-laptop-code"></i>
+          </a>
+          <a href="#" class="social-icon" data-platform="facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-icon" data-platform="rednote" title="小红书">
+            <i class="fas fa-book-bookmark"></i>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 中间主内容区 -->
+    <main class="main-content">
+      <div class="content-header">
+        <h1>Welcome to Liquid Blog</h1>
+        <p class="subtitle">分享技术与生活</p>
+      </div>
+
+      <div class="posts-container" id="postsContainer">
+        <!-- 文章将通过 JS 动态渲染 -->
+      </div>
+    </main>
+
+    <!-- 右侧边栏 -->
+    <aside class="sidebar-right">
+      <div class="widget">
+        <h3 class="widget-title">
+          <i class="fas fa-clock"></i>
+          Recently Updated
+        </h3>
+        <ul class="recent-posts" id="recentPosts">
+          <!-- 最近更新通过 JS 渲染 -->
+        </ul>
+      </div>
+
+      <div class="widget">
+        <h3 class="widget-title">
+          <i class="fas fa-fire"></i>
+          Trending Tags
+        </h3>
+        <div class="tags-cloud" id="tagsCloud">
+          <!-- 热门标签通过 JS 渲染 -->
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
