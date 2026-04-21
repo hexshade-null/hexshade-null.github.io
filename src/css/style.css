@@ -11,15 +11,15 @@
 }
 
 [data-theme="dark"] {
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #242424;
-  --bg-tertiary: #333333;
-  --text-primary: #f5f5f5;
-  --text-secondary: #a0a0a0;
+  --bg-primary: #4a4a4a;
+  --bg-secondary: #555555;
+  --bg-tertiary: #666666;
+  --text-primary: #d8d8d8;
+  --text-secondary: #909090;
   --text-muted: #707070;
-  --border-color: #3a3a3a;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --border-color: #5a5a5a;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -57,6 +57,44 @@ body {
   background: var(--bg-secondary);
   border-radius: 12px;
   box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+/* 伸缩收起状态 */
+.sidebar-left.collapsed {
+  width: 60px;
+  padding: 12px 8px;
+}
+
+.sidebar-left.collapsed .logo {
+  justify-content: center;
+  padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 12px;
+}
+
+.sidebar-left.collapsed .logo-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.sidebar-left.collapsed .logo-text,
+.sidebar-left.collapsed .nav-item span,
+.sidebar-left.collapsed .sidebar-bottom {
+  display: none;
+}
+
+.sidebar-left.collapsed .nav-menu {
+  gap: 4px;
+}
+
+.sidebar-left.collapsed .nav-item {
+  justify-content: center;
+  padding: 10px;
+}
+
+.sidebar-left.collapsed .nav-item i {
+  margin: 0;
 }
 
 .logo {
@@ -66,6 +104,11 @@ body {
   margin-bottom: 24px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+.logo:hover {
+  opacity: 0.8;
 }
 
 .logo-icon {
@@ -76,9 +119,13 @@ body {
   justify-content: center;
   background: var(--text-primary);
   border-radius: 8px;
-  color: var(--bg-secondary);
-  font-size: 14px;
-  font-weight: 600;
+  overflow: hidden;
+}
+
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .logo-text {
@@ -89,14 +136,14 @@ body {
 .nav-menu {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   color: var(--text-secondary);
   text-decoration: none;
   border-radius: 8px;
@@ -122,57 +169,60 @@ body {
 
 .sidebar-bottom {
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 20px;
   border-top: 1px solid var(--border-color);
   display: flex;
+  flex-direction: column;
+  gap: 16px;
   align-items: center;
-  justify-content: space-between;
 }
 
-/* 简洁主题切换 */
+/* 简洁主题切换（SVG 图标） */
 .theme-toggle {
-  position: relative;
-  width: 40px;
-  height: 22px;
-  background: var(--bg-tertiary);
-  border-radius: 11px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.theme-toggle::after {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 18px;
-  height: 18px;
-  background: var(--bg-secondary);
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="dark"] .theme-toggle::after {
-  transform: translateX(18px);
-}
-
-.social-links {
-  display: flex;
-  gap: 6px;
-}
-
-.social-icon {
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-tertiary);
-  border-radius: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-primary);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--text-secondary);
+  transition: fill 0.2s ease;
+}
+
+.theme-toggle:hover svg {
+  fill: var(--text-primary);
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 12px;
+  font-size: 14px;
   transition: all 0.2s ease;
 }
 
@@ -489,8 +539,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  color: var(--text-muted);
+  overflow: hidden;
+}
+
+.about-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .about-name {

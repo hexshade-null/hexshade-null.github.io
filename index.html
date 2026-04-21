@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Liquid Blog</title>
+  <title>hexshade's Blog -- where great idea meets</title>
+  <link rel="icon" href="images/hexshade_icon.png" type="image/png">
   <link rel="stylesheet" href="/src/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -13,9 +14,9 @@
     <aside class="sidebar-left">
       <div class="logo">
         <div class="logo-icon">
-          <i class="fas fa-droplet"></i>
+          <img src="images/hexshade_icon.png" alt="hexshade">
         </div>
-        <span class="logo-text">Liquid</span>
+        <span class="logo-text">hexshade</span>
       </div>
 
       <nav class="nav-menu">
@@ -42,29 +43,37 @@
       </nav>
 
       <div class="sidebar-bottom">
-        <div class="theme-toggle" id="themeToggle">
-          <i class="fas fa-sun"></i>
-          <i class="fas fa-moon"></i>
+        <div class="theme-toggle" id="themeToggle" title="切换主题">
+          <svg viewBox="0 0 24 24" id="themeIcon">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </div>
 
         <div class="social-links">
-          <a href="#" class="social-icon" data-platform="x" title="X (Twitter)">
+          <a href="https://x.com/LiuJacky53322" target="_blank" class="social-icon" data-platform="x" title="X (Twitter)">
             <i class="fab fa-x-twitter"></i>
           </a>
-          <a href="#" class="social-icon" data-platform="luogu" title="Luogu">
-            <i class="fas fa-code"></i>
-          </a>
-          <a href="#" class="social-icon" data-platform="atcoder" title="AtCoder">
-            <i class="fas fa-trophy"></i>
-          </a>
-          <a href="#" class="social-icon" data-platform="codeforces" title="Codeforces">
-            <i class="fas fa-laptop-code"></i>
-          </a>
-          <a href="#" class="social-icon" data-platform="facebook" title="Facebook">
+          <a href="https://www.facebook.com/profile.php?id=61575683730498" target="_blank" class="social-icon" data-platform="facebook" title="Facebook">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="#" class="social-icon" data-platform="rednote" title="小红书">
-            <i class="fas fa-book-bookmark"></i>
+          <a href="https://www.luogu.com.cn/user/1940127" target="_blank" class="social-icon" data-platform="luogu" title="Luogu">
+            <i class="fas fa-code"></i>
+          </a>
+          <a href="https://atcoder.jp/users/wibo" target="_blank" class="social-icon" data-platform="atcoder" title="AtCoder">
+            <i class="fas fa-trophy"></i>
+          </a>
+          <a href="https://codeforces.com/profile/wibo_leo" target="_blank" class="social-icon" data-platform="codeforces" title="Codeforces">
+            <i class="fas fa-laptop-code"></i>
           </a>
         </div>
       </div>
@@ -73,8 +82,8 @@
     <!-- 中间主内容区 -->
     <main class="main-content">
       <div class="content-header">
-        <h1>Welcome to Liquid Blog</h1>
-        <p class="subtitle">分享技术与生活</p>
+        <h1>hexshade's Blog</h1>
+        <p class="subtitle">Stay hungry, stay foolish.</p>
       </div>
 
       <div class="posts-container" id="postsContainer">

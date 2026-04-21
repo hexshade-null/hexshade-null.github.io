@@ -222,19 +222,18 @@ function renderArchives(container) {
 function renderAbout(container) {
   container.innerHTML = `<div class="content-header">
     <h1>About</h1>
-    <p class="subtitle">关于我</p>
+    <p class="subtitle">关于 hexshade</p>
   </div>
   <div class="about-content">
-    <div class="about-avatar"><i class="fas fa-user"></i></div>
-    <div class="about-name">博主</div>
+    <img src="images/hexshade_icon.png" alt="hexshade" class="about-avatar">
+    <div class="about-name">hexshade</div>
     <div class="about-bio">
-      热爱技术与算法，专注于前端开发与算法竞赛。
-      <br>欢迎来到我的个人博客，一起交流学习！
+      Stay hungry, stay foolish.
+      <br>热爱技术与算法，欢迎来到我的个人博客，一起交流学习！
     </div>
     <div class="about-contact">
-      <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-      <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/hexshade-null" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+      <a href="mailto:liujq.wibo@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
     </div>
   </div>`;
 }
@@ -325,8 +324,34 @@ function renderTrendingTags() {
     .join("");
 }
 
+function updateThemeIcon() {
+  const icon = document.getElementById("themeIcon");
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+
+  if (isDark) {
+    icon.innerHTML = `
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    `;
+  } else {
+    icon.innerHTML = `
+      <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+      <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    `;
+  }
+}
+
 function initEventListeners() {
-  document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+  document.getElementById("themeToggle").addEventListener("click", () => {
+    toggleTheme();
+    updateThemeIcon();
+  });
 
   document.querySelectorAll(".nav-item").forEach((item) => {
     item.addEventListener("click", (e) => {
@@ -335,10 +360,15 @@ function initEventListeners() {
       navigateTo(section);
     });
   });
+
+  document.querySelector(".logo").addEventListener("click", () => {
+    document.querySelector(".sidebar-left").classList.toggle("collapsed");
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
+  updateThemeIcon();
   navigateTo("home");
   renderRecentPosts();
   renderTrendingTags();
