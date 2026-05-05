@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp -R public/images dist/",
+    "build": "vite build && cp -R public/images dist/ && cp -R public/posts dist/",
     "preview": "vite preview"
   },
   "devDependencies": {

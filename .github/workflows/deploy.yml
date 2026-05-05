@@ -35,6 +35,9 @@ jobs:
       - name: Copy images
         run: cp -R public/images dist/
 
+      - name: Copy posts
+        run: cp -R public/posts dist/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
