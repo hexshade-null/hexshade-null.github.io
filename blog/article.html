@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article - hexshade's Blog</title>
+  <link rel="icon" href="https://cdn.luogu.com.cn/upload/image_hosting/o84ufp3y.png?x-oss-process=image/resize,m_lfit,h_170,w_225" type="image/png">
+  <link rel="stylesheet" href="../src/css/style.css">
+  <link rel="stylesheet" href="../src/css/article.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css">
+  <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css" disabled>
+</head>
+<body>
+  <div class="article-page">
+    <header class="article-topbar">
+      <a href="../index.html" class="home-link">
+        <div class="logo-icon">
+          <img src="https://cdn.luogu.com.cn/upload/image_hosting/o84ufp3y.png?x-oss-process=image/resize,m_lfit,h_170,w_225" alt="hexshade">
+        </div>
+        <span>HOME</span>
+      </a>
+      <div class="topbar-right">
+        <div class="theme-toggle" id="themeToggle" title="切换主题">
+          <svg viewBox="0 0 24 24" id="themeIcon">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <div class="article-body">
+      <aside class="article-outline">
+        <div class="outline-title">Outline</div>
+        <nav class="outline-nav" id="outlineNav"></nav>
+      </aside>
+
+      <article class="article-content">
+        <div id="articleHeader"></div>
+        <div class="markdown-body" id="markdownBody">
+          <div class="article-loading">
+            <i class="fas fa-spinner fa-spin"></i> 加载中...
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/11.1.1/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="../src/js/article.js"></script>
+</body>
+</html>
