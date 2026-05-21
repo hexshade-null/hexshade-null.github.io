@@ -27,26 +27,35 @@
   }, 120);
 })();
 
-const postsData = [
-  {
-    id: 1,
-    slug: "silicon-dawn",
-    title: "硅基曙光",
-    excerpt: "凌晨三点十七分，上海浦东华为研发中心的地下实验室里，警报声尖锐地撕裂了寂静。",
-    date: "2026-05-05",
-    category: "娱乐",
-    tags: ["科幻", "短篇小说"]
+let postsData = [];
+let categories = [];
+let allTags = [];
+
+async function loadPostsIndex() {
+  try {
+    const resp = await fetch("/posts/index.json");
+    if (!resp.ok) throw new Error("index.json not found");
+    const index = await resp.json();
+
+    postsData = index.posts || [];
+
+    const catMap = {};
+    const tagMap = {};
+    postsData.forEach((post) => {
+      if (post.category) {
+        catMap[post.category] = (catMap[post.category] || 0) + 1;
+      }
+      (post.tags || []).forEach((t) => {
+        tagMap[t] = (tagMap[t] || 0) + 1;
+      });
+    });
+
+    categories = Object.entries(catMap).map(([name, count]) => ({ name, count }));
+    allTags = Object.entries(tagMap).map(([name, count]) => ({ name, count }));
+  } catch (err) {
+    console.error("Failed to load posts index:", err);
   }
-];
-
-const categories = [
-  { name: "娱乐", count: 1 }
-];
-
-const allTags = [
-  { name: "科幻", count: 1 },
-  { name: "短篇小说", count: 1 }
-];
+}
 
 function initTheme() {
   const savedTheme = localStorage.getItem("theme") || "light";
@@ -67,7 +76,8 @@ function formatDate(dateStr) {
 
 function navigateTo(section) {
   document.querySelectorAll(".nav-item").forEach((item) => item.classList.remove("active"));
-  document.querySelector(`[data-section="${section}"]`).classList.add("active");
+  const el = document.querySelector(`[data-section="${section}"]`);
+  if (el) el.classList.add("active");
 
   const container = document.getElementById("postsContainer");
 
@@ -95,7 +105,7 @@ function renderHome(container) {
     ${postsData
       .map(
         (post) => `
-      <a href="#article/${post.slug}" class="post-card" onclick="window.location.href='blog/article.html?slug=${post.slug}'; return false;">
+      <a href="blog/article.html?slug=${post.slug}" class="post-card">
         <div class="post-meta">
           <span><i class="far fa-calendar"></i> ${formatDate(post.date)}</span>
           <span><i class="far fa-folder"></i> ${post.category}</span>
@@ -170,7 +180,7 @@ function renderArchives(container) {
         ${postsByYear[year]
           .map(
             (post) => `
-          <div class="timeline-post">
+          <div class="timeline-post" onclick="window.location.href='blog/article.html?slug=${post.slug}'">
             <div class="timeline-post-title">${post.title}</div>
             <div class="timeline-post-date">${formatDate(post.date)}</div>
           </div>
@@ -215,7 +225,7 @@ function filterByCategory(category) {
     ${filteredPosts
       .map(
         (post) => `
-      <a href="#article/${post.slug}" class="post-card" onclick="window.location.href='blog/article.html?slug=${post.slug}'; return false;">
+      <a href="blog/article.html?slug=${post.slug}" class="post-card">
         <div class="post-meta">
           <span><i class="far fa-calendar"></i> ${formatDate(post.date)}</span>
           <span><i class="far fa-folder"></i> ${post.category}</span>
@@ -244,7 +254,7 @@ function filterByTag(tag) {
     ${filteredPosts
       .map(
         (post) => `
-      <a href="#article/${post.slug}" class="post-card" onclick="window.location.href='blog/article.html?slug=${post.slug}'; return false;">
+      <a href="blog/article.html?slug=${post.slug}" class="post-card">
         <div class="post-meta">
           <span><i class="far fa-calendar"></i> ${formatDate(post.date)}</span>
           <span><i class="far fa-folder"></i> ${post.category}</span>
@@ -268,7 +278,7 @@ function renderRecentPosts() {
   container.innerHTML = recentPosts
     .map(
       (post) => `
-    <li class="recent-post-item" onclick="filterByCategory('${post.category}')">
+    <li class="recent-post-item" onclick="window.location.href='blog/article.html?slug=${post.slug}'">
       <div class="recent-post-title">${post.title}</div>
       <div class="recent-post-date">${formatDate(post.date)}</div>
     </li>
@@ -291,6 +301,7 @@ function renderTrendingTags() {
 
 function updateThemeIcon() {
   const icon = document.getElementById("themeIcon");
+  if (!icon) return;
   const isDark = document.documentElement.getAttribute("data-theme") === "dark";
 
   if (isDark) {
@@ -331,9 +342,10 @@ function initEventListeners() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   initTheme();
   updateThemeIcon();
+  await loadPostsIndex();
   navigateTo("home");
   renderRecentPosts();
   renderTrendingTags();

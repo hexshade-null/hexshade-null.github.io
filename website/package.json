@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && cp -R public/images dist/ && cp -R public/posts dist/",
+    "blog": "hexshade",
+    "index": "hexshade --index",
+    "publish": "hexshade --publish",
     "preview": "vite preview"
   },
   "devDependencies": {
